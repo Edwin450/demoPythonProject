@@ -1,8 +1,8 @@
-from flask import request, jsonify
+from flask import request, jsonify # type: ignore
 from src.models.auth_models.project_model import Project 
 from src import db
 
-# student List
+# project List
 def get_project_controller():
     project = Project.query.all()
     return jsonify([{
@@ -11,7 +11,7 @@ def get_project_controller():
         'description': Project.description
     }for Project in project])
 
-# new student
+# new project
 def add_project_controller():
     data = request.get_json()
 
@@ -25,7 +25,7 @@ def add_project_controller():
 
     return jsonify({'message': 'Student added successfully'})
 
-# update student
+# update project
 def update_project_controller(id):
     data = request.get_json()
     project = Project.query.get(id)
@@ -40,7 +40,7 @@ def update_project_controller(id):
 
     return jsonify({'message': 'Project updated successfully'})
 
-# delete student
+# delete project
 def delete_student_controller(id):
     project = Project.query.get(id)
 
